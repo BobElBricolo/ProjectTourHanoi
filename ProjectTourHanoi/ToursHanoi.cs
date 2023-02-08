@@ -2,7 +2,7 @@
 {
     public class ToursHanoi
     {
-        private int[] tours;
+        private Tour[] tours = new Tour[3];
         
         
     }
