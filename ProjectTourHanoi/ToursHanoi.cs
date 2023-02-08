@@ -13,7 +13,7 @@ namespace ProjectTourHanoi
             // _tours[0] = new Tour('A',_____);
             // _tours[1] = new Tour('B',_____);
             // _tours[2] = new Tour('C',_____);
-            // reiniatiliser
+            reinitialiser();
         }
 
         public void reinitialiser()
@@ -28,7 +28,7 @@ namespace ProjectTourHanoi
             }
         }
 
-        public bool deplacer(int de, int vers, string strDe, string strVers)
+        private bool deplacer(int de, int vers, string strDe, string strVers)
         {
             int nb;
             
@@ -52,7 +52,7 @@ namespace ProjectTourHanoi
             return false;
         }
 
-        private void validation(string vers, string de)
+        public void validation(string vers, string de)
         {
             //Avec A comme point de départ
             if (de.Equals("a") || de.Equals("A"))
@@ -109,6 +109,26 @@ namespace ProjectTourHanoi
                 Console.WriteLine("Déplacement illégal");
             }
         }
+
+        public void resoudre()
+        {
+            reinitialiser();
+            deplacerAuto();
+        }
         
+        private void deplacerAuto()
+        {
+            
+        }
+
+        public string toString()
+        {
+            string affiche = "";
+            for (int i = 0; i < 3; i++)
+            {
+               affiche +=  _tours[i].ToString()+"\n";
+            }
+            return affiche;
+        }
     }
 }
