@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks.Dataflow;
 
 namespace ProjectTourHanoi
 {
@@ -28,9 +29,14 @@ namespace ProjectTourHanoi
             }
         }
 
-        private bool deplacer(int de, int vers, string strDe, string strVers)
+        private bool deplacer(string strDe, string strVers)
         {
             int nb;
+            int de;
+            int vers;
+
+            de = transform(strDe);
+            vers = transform(strVers);
             
             /*
             if (_tours[de].peek() < _tours[vers].peek())
@@ -52,62 +58,38 @@ namespace ProjectTourHanoi
             return false;
         }
 
-        public void validation(string vers, string de)
+        private int transform(string de)
         {
-            //Avec A comme point de départ
-            if (de.Equals("a") || de.Equals("A"))
+            int nb = -1;
+            bool fin = false;
+
+            while (!fin)
             {
-                if (vers.Equals("b") || vers.Equals("B"))
+                if (de.Equals("a") || de.Equals("A"))
                 {
-                    deplacer(0, 1,"A","B");
+                    nb = 0;
+                    fin = true;
                 }
-                else if (vers.Equals("c") || vers.Equals("C"))
+
+                else if (de.Equals("b") || de.Equals("B"))
                 {
-                    deplacer(0, 2,"A","C");
+                    nb = 1;
+                    fin = true;
                 }
+
+                else if (de.Equals("c") || de.Equals("C"))
+                {
+                    nb = 2;
+                    fin = true;
+                }
+
                 else
                 {
-                    Console.WriteLine("Déplacement illégal");
+                    Console.WriteLine("Choix de tour non-valide");
                 }
             }
-            
-            //Avec B comme point de départ
-            else if (de.Equals("b") || de.Equals("B"))
-            {
-                if (vers.Equals("a") || vers.Equals("A"))
-                {
-                    deplacer(1, 0,"B","A");
-                }
-                else if (vers.Equals("c") || vers.Equals("C"))
-                {
-                    deplacer(1, 2,"B","C");
-                }
-                else
-                {
-                    Console.WriteLine("Déplacement illégal");
-                }
-            }
-            
-            //Avec C comme point de départ
-            else if (de.Equals("c") || de.Equals("C"))
-            {
-                if (vers.Equals("a") || vers.Equals("A"))
-                {
-                    deplacer(2, 0,"C","A");
-                }
-                else if (vers.Equals("b") || vers.Equals("B"))
-                {
-                    deplacer(2, 1,"C","B");
-                }
-                else
-                {
-                    Console.WriteLine("Déplacement illégal");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Déplacement illégal");
-            }
+
+            return nb;
         }
 
         public void resoudre()
