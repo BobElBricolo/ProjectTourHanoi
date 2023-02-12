@@ -15,6 +15,7 @@ namespace ProjectTourHanoi
 
             while (!fin)
             {
+                //Affichage du menu
                 Console.WriteLine("Tours:");
                 Console.WriteLine(jeu + "\n");
 
@@ -26,8 +27,11 @@ namespace ProjectTourHanoi
                 Console.WriteLine("4: Montrer la solution");
                 Console.WriteLine("5: Quitter");
                 Console.WriteLine("Faites votre choix et appuyer sur ENTER");
+                
+                //Récupération du choix de l'utilisateur
                 choix = Console.ReadLine();
 
+                //Appel de la fonction selon le choix
                 switch (choix)
                 {
                     case "1":
@@ -46,10 +50,12 @@ namespace ProjectTourHanoi
                         //jeu.resoudre();
                         break;
                     
+                    //Quitte la boucle
                     case "5":
                         fin = true;
                         break;
                     
+                    //Message d'erreur si choix non-valide
                     default:
                         Console.WriteLine("Choix non-valide");
                         break;
@@ -60,24 +66,34 @@ namespace ProjectTourHanoi
 
         static void choix1()
         {
-            int nb;
-            bool fin = false;
+            int nb;//Variable du nombre d'anneaux
+            bool fin = false;//Variable pour la boucle
 
+            //Boucle jusqu'à ce qu'un résultat valide soit entré
             while (!fin)
             {
-                Console.WriteLine("Veuiller entrer un nombre entre 1 et 9");
+                //Récupération du nombre d'anneau
+                Console.WriteLine("Veuiller entrer un nombre d'anneau entre 1 et 9");
                 nb = Convert.ToInt16(Console.ReadLine());
 
+                //Validation du nombre entré
                 if (nb < 10 && nb > 0)
                 {
+                    //Création du nouveau jeu avec le nombre d'anneaux
                     jeu = new ToursHanoi(nb);
+                    
+                    //Termine la boucle
                     fin = true;
                 }
+                
+                //Si le nombre est , retour au menu
                 else if (nb == 0)
                 {
                     Console.WriteLine("Retour au menu principal");
                     fin = true;
                 }
+                
+                //Si le nombre est invalide, affichage du message d'erreur
                 else
                 {
                     Console.WriteLine("Choix non-valide");
