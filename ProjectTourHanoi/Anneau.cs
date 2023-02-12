@@ -2,6 +2,11 @@
 {
     public class Anneau
     {
-        public int diametre { get; }
+        public int Diametre { get; }
+
+        public Anneau(int diametre)
+        {
+            Diametre = diametre;
+        }
     }
 }
