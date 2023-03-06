@@ -7,7 +7,7 @@ namespace ProjectTourHanoi
     {
         private Tour[] _tours = new Tour[3];
         private int _nbAnneau;
-        private int top = -1;
+        private int top { get, set; } //Arranger le setter qui veut pas rester
 
         //Constructeur
         public ToursHanoi(int nbAnneau)
@@ -16,7 +16,7 @@ namespace ProjectTourHanoi
             // _tours[0] = new Tour('A',_____);
             // _tours[1] = new Tour('B',_____);
             // _tours[2] = new Tour('C',_____);
-            top = nbAnneau - 1;
+            top = _nbAnneau - 1;
             reinitialiser();
         }
 
