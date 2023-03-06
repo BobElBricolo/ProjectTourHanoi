@@ -7,16 +7,14 @@ namespace ProjectTourHanoi
     {
         private Tour[] _tours = new Tour[3];
         private int _nbAnneau;
-        private int top { get, set; } //Arranger le setter qui veut pas rester
-
+        
         //Constructeur
         public ToursHanoi(int nbAnneau)
         {
             _nbAnneau = nbAnneau;
-            // _tours[0] = new Tour('A',_____);
-            // _tours[1] = new Tour('B',_____);
-            // _tours[2] = new Tour('C',_____);
-            top = _nbAnneau - 1;
+            _tours[0] = new Tour('A',nbAnneau,nbAnneau);
+            _tours[1] = new Tour('B',0,nbAnneau);
+            _tours[2] = new Tour('C',0,nbAnneau);
             reinitialiser();
         }
 
@@ -24,38 +22,31 @@ namespace ProjectTourHanoi
         public void reinitialiser()
         {
             //Vide les tours
-            // _tours[0].clear();
-            // _tours[1].clear();
-            // _tours[2].clear();
+            _tours[0].clear();
+            _tours[1].clear();
+            _tours[2].clear();
 
             //Ajout des anneaux sur la tour A
             for (int i = _nbAnneau; i > 0; i--)
             {
-                //_tours[0].push(i);
+                _tours[0].push(new Anneau(i));
             }
         }
 
         //Déplace lun anneau si le mouvement est légal
-        private bool deplacer(string strDe, string strVers)
+        public bool deplacer(int de, int vers)
         {
-            int nb; //Variable de l'anneau à déplacer
-            int de; //Variable de la tour de départ
-            int vers; //Varibale de la tour de fin
+            Anneau nb = _tours[de].peek();
 
-            //Récupération des indice de tours (a = 0, b = 1, c = 2)
-            de = transform(strDe);
-            vers = transform(strVers);
-            
-            /*//Vérifie si l'anneau a déplacer est plus petit
-            if (_tours[de].peek() < _tours[vers].peek())
+            //Vérifie si l'anneau a déplacer est plus petit
+            if (nb.Diametre < _tours[vers].peek().Diametre)
             {
                 //Déplacement de l'anneau
-                nb = _tours[de].peek();
                 _tours[de].pop();
                 _tours[vers].push(nb);
                 
                 //Affichage du déplacement
-                Console.WriteLine("L'anneau de diamètre " + nb + " est déplacé de la tour " + strDe + " vers la tour " + strVers);
+                Console.WriteLine("L'anneau de diamètre " + nb + " est déplacé de la tour " + de + " vers la tour " + vers);
                 return true;
             }
             else
@@ -64,20 +55,24 @@ namespace ProjectTourHanoi
                 Console.WriteLine("Déplacement illégal");
                 return false;
             }
-            */
-            
-            return false;
+
+           return false;
+
         }
 
         //Transforme les lettres des tour en indice int (a = 0, b = 1, c = 2)
-        private int transform(string de)
+        public int transform()
         {
             int nb = -1;
             bool fin = false;
+            string de;
 
             //Boucle qui prend fin lors d'un résultat valide
             while (!fin)
             {
+                
+                de = Console.ReadLine();
+                
                 //Si la tour est a, retourne 0 et sort de la boucle
                 if (de.Equals("a") || de.Equals("A"))
                 {
@@ -112,20 +107,30 @@ namespace ProjectTourHanoi
         public void resoudre()
         {
             reinitialiser();
-            deplacerAuto();
+            deplacerAuto(_nbAnneau,0,1,2);
         }
         
-        private void deplacerAuto()
+        private void deplacerAuto(int disque,int de, int inter, int vers)
         {
-            
+            if (disque == 1)
+            {
+                deplacer(de, vers);
+            }
+
+            else
+            {
+             deplacerAuto(disque-1,de,vers,inter);
+             deplacer(de, vers);
+             deplacerAuto(disque - 1,inter,de,vers);
+            }
         }
 
-        public string toString()
+        public override string ToString()
         {
             string affiche = "";
             for (int i = 0; i < 3; i++)
             {
-               affiche +=  _tours[i].ToString()+"\n";
+               affiche +=  _tours[i]+"\n";
             }
             return affiche;
         }

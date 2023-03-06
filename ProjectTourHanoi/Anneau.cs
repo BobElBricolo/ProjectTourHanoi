@@ -8,5 +8,10 @@
         {
             Diametre = diametre;
         }
+        
+        public override string ToString()
+        {
+            return Diametre.ToString();
+        }
     }
 }

@@ -16,8 +16,8 @@ namespace ProjectTourHanoi
             while (!fin)
             {
                 //Affichage du menu
-                Console.WriteLine("Tours:");
-                Console.WriteLine(jeu + "\n");
+                Console.WriteLine("\n\nTours:");
+                Console.WriteLine(jeu);
 
                 Console.WriteLine("MENU\n");
 
@@ -47,7 +47,7 @@ namespace ProjectTourHanoi
                         break;
                     
                     case "4":
-                        //jeu.resoudre();
+                        jeu.resoudre();
                         break;
                     
                     //Quitte la boucle
@@ -108,7 +108,16 @@ namespace ProjectTourHanoi
 
         static private void choix3()
         {
+            Console.WriteLine("De quelle tour prenez-vous l'anneau? (A - B - C)");
+            int _base = jeu.transform();
             
+            Console.WriteLine("Vers quelle tour envoyez-vous l'anneau? (A - B - C)");
+            int fin = jeu.transform();
+
+
+            jeu.deplacer(_base, fin);
         }
+
+        
     }
 }
