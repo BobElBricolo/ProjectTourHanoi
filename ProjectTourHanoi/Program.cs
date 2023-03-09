@@ -18,9 +18,7 @@ namespace ProjectTourHanoi
                 //Affichage du menu
                 Console.WriteLine("\n\nTours:");
                 Console.WriteLine(jeu);
-
-                Console.WriteLine("MENU\n");
-
+                Console.WriteLine("MENU");
                 Console.WriteLine("1:Déterminer le nombre d'anneaux (3 par défaut)");
                 Console.WriteLine("2: Réinitialiser les tours");
                 Console.WriteLine("3: Jouer un coup");
@@ -46,6 +44,7 @@ namespace ProjectTourHanoi
                         choix3();
                         break;
                     
+                    //Résolution du jeu
                     case "4":
                         jeu.resoudre();
                         break;
@@ -108,13 +107,14 @@ namespace ProjectTourHanoi
 
         static private void choix3()
         {
+            //Récupération des tours
             Console.WriteLine("De quelle tour prenez-vous l'anneau? (A - B - C)");
             int _base = jeu.transform();
             
             Console.WriteLine("Vers quelle tour envoyez-vous l'anneau? (A - B - C)");
             int fin = jeu.transform();
 
-
+            //Déplacement de l'anneau
             jeu.deplacer(_base, fin);
         }
 

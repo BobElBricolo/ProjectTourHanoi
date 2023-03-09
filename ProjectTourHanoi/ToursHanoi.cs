@@ -56,8 +56,6 @@ namespace ProjectTourHanoi
                 return false;
             }
 
-           return false;
-
         }
 
         //Transforme les lettres des tour en indice int (a = 0, b = 1, c = 2)
@@ -104,12 +102,14 @@ namespace ProjectTourHanoi
             return nb;
         }
 
+        //Fonction de résolution du jeu
         public void resoudre()
         {
             reinitialiser();
             deplacerAuto(_nbAnneau,0,1,2);
         }
         
+        //Fonction de déplacement automatique des anneaux
         private void deplacerAuto(int disque,int de, int inter, int vers)
         {
             if (disque == 1)
@@ -125,6 +125,7 @@ namespace ProjectTourHanoi
             }
         }
 
+        //Affichage du jeu
         public override string ToString()
         {
             string affiche = "";
