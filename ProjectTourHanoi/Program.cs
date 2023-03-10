@@ -16,7 +16,7 @@ namespace ProjectTourHanoi
             while (!fin)
             {
                 //Affichage du menu
-                Console.WriteLine("\n\nTours:");
+                Console.WriteLine("\nTours:");
                 Console.WriteLine(jeu);
                 Console.WriteLine("MENU");
                 Console.WriteLine("1:Déterminer le nombre d'anneaux (3 par défaut)");
