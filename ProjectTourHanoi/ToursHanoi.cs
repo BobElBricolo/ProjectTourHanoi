@@ -8,7 +8,10 @@ namespace ProjectTourHanoi
         private Tour[] _tours = new Tour[3];
         private int _nbAnneau;
         
-        //Constructeur
+        /*
+	     * \brief : Constructeur ToursHanoi surchargé 
+	     * \param[in] : Un int qui représente le nombre d'anneaux
+	     */
         public ToursHanoi(int nbAnneau)
         {
             _nbAnneau = nbAnneau;
@@ -18,7 +21,12 @@ namespace ProjectTourHanoi
             reinitialiser();
         }
 
-        //Réinitialise le jeu
+        
+        /*
+        * \brief : Réinitialiser le jeu
+        * \param[in] : Aucun
+        * \return : Aucun
+        */
         public void reinitialiser()
         {
             //Vide les tours
@@ -33,7 +41,13 @@ namespace ProjectTourHanoi
             }
         }
 
-        //Déplace lun anneau si le mouvement est légal
+        
+        /*
+        * \brief : Déplacer un anneau
+        * \param[in] : int représentant l'indice de la tour de départ
+        * \param[in] : int représentant l'indice de la tour de fin
+        * \return : bool représentant si le déplacment est valide
+        */
         public bool deplacer(int de, int vers)
         {
             Anneau nb = _tours[de].peek();
@@ -58,7 +72,12 @@ namespace ProjectTourHanoi
 
         }
 
-        //Transforme les lettres des tour en indice int (a = 0, b = 1, c = 2)
+        
+        /*
+        * \brief : Transformer les lettres des tour en indice int (a = 0, b = 1, c = 2)
+        * \param[in] : Aucun
+        * \return : int représentant l'indice de la tour
+        */
         public int transform()
         {
             int nb = -1;
@@ -68,7 +87,7 @@ namespace ProjectTourHanoi
             //Boucle qui prend fin lors d'un résultat valide
             while (!fin)
             {
-                
+                //Récupération de la lettre de la tour
                 de = Console.ReadLine();
                 
                 //Si la tour est a, retourne 0 et sort de la boucle
@@ -102,14 +121,27 @@ namespace ProjectTourHanoi
             return nb;
         }
 
-        //Fonction de résolution du jeu
+        
+        /*
+        * \brief : Résolution du jeu
+        * \param[in] : Aucun
+        * \return : Aucun
+        */
         public void resoudre()
         {
             reinitialiser();
             deplacerAuto(_nbAnneau,0,1,2);
         }
         
-        //Fonction de déplacement automatique des anneaux
+        
+        /*
+        * \brief : Déplacement automatique des anneaux par récursivité
+        * \param[in] : int représentant le disque à déplacer
+        * \param[in] : int représentant l'indice de la tour de départ
+        * \param[in] : int représentant l'indice de la tour intermédiare
+        * \param[in] : int représentant l'indice de la tour de fin
+        * \return : Aucun
+        */
         private void deplacerAuto(int disque,int de, int inter, int vers)
         {
             if (disque == 1)
@@ -125,7 +157,12 @@ namespace ProjectTourHanoi
             }
         }
 
-        //Affichage du jeu
+        
+        /*
+        * \brief : Afficher le jeu
+        * \param[in] : Aucun
+        * \return : String représentant le jeu avec ses tours et ses anneaux
+        */
         public override string ToString()
         {
             string affiche = "";
