@@ -67,6 +67,7 @@ namespace ProjectTourHanoi
             {
                 //Affichage du message d'erreur
                 Console.WriteLine("Déplacement illégal");
+                Console.WriteLine("Veuillez recommencer la sélection des tours");
                 return false;
             }
 

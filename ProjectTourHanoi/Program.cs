@@ -19,7 +19,7 @@ namespace ProjectTourHanoi
                 Console.WriteLine("\nTours:");
                 Console.WriteLine(jeu);
                 Console.WriteLine("MENU");
-                Console.WriteLine("1:Déterminer le nombre d'anneaux (3 par défaut)");
+                Console.WriteLine("1: Déterminer le nombre d'anneaux (3 par défaut)");
                 Console.WriteLine("2: Réinitialiser les tours");
                 Console.WriteLine("3: Jouer un coup");
                 Console.WriteLine("4: Montrer la solution");
@@ -37,7 +37,7 @@ namespace ProjectTourHanoi
                         break;
                     
                     case "2":
-                        choix2();
+                        jeu.reinitialiser();
                         break;
                     
                     case "3":
@@ -63,6 +63,11 @@ namespace ProjectTourHanoi
             }
         }
 
+        /*
+        * \brief : Déterminer le nombre d'anneaux (3 par défaut)
+        * \param[in] : Aucun
+        * \return : Aucun
+        */
         static void choix1()
         {
             int nb;//Variable du nombre d'anneaux
@@ -99,23 +104,30 @@ namespace ProjectTourHanoi
                 }
             }
         }
-
-        static private void choix2()
+        
+        /*
+        * \brief : Jouer un coup
+        * \param[in] : Aucun
+        * \return : Aucun
+        */
+        static void choix3()
         {
-            jeu.reinitialiser();
-        }
-
-        static private void choix3()
-        {
-            //Récupération des tours
-            Console.WriteLine("De quelle tour prenez-vous l'anneau? (A - B - C)");
-            int _base = jeu.transform();
+            bool estfin = false;
             
-            Console.WriteLine("Vers quelle tour envoyez-vous l'anneau? (A - B - C)");
-            int fin = jeu.transform();
+            //Boucle qui prend fin si le déplacement est valide
+            while (!estfin)
+            {
+                //Récupération des tours
+                Console.WriteLine("De quelle tour prenez-vous l'anneau? (A - B - C)");
+                int _base = jeu.transform();
+            
+                Console.WriteLine("Vers quelle tour envoyez-vous l'anneau? (A - B - C)");
+                int fin = jeu.transform();
 
-            //Déplacement de l'anneau
-            jeu.deplacer(_base, fin);
+                //Déplacement de l'anneau
+                estfin = jeu.deplacer(_base, fin);    
+            }
+            
         }
 
         
