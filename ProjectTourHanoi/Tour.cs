@@ -74,7 +74,7 @@ namespace ProjectTourHanoi
             {
                 return _tours[_top];
             }
-            //Si la tour est vide, retourne un diamètre plus grand que le maximum d'anneau
+            //Si la tour est vide, retourne un diamètre plus grand que le maximum d'anneau pour assurer que le déplacment sera perçu comme valide
             else
             {
                 return (new Anneau(_tours.Length + 1));
